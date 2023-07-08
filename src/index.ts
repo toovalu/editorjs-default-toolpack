@@ -11,8 +11,11 @@ import Marker from '@editorjs/marker'
 import CheckList from '@editorjs/checklist'
 import Delimiter from '@editorjs/delimiter'
 import InlineCode from '@editorjs/inline-code'
-import MediaLibAdapterTool from './tools/MediaLibAdapter'
+import { MediaLibAdapterTool } from './tools/MediaLibAdapter'
 import Image from '@editorjs/image';
+
+import { createStrapiImageToolConfig } from './config/imageToolConfig'
+import { createStrapiLinkToolConfig } from './config/linkToolConfig'
 
 import type { CreateToolsFunction } from 'strapi-plugin-react-editorjs/types'
 
@@ -39,38 +42,11 @@ const createTools: CreateToolsFunction = (ejs) => {
         code: Code,
         link: {
           class: LinkTool,
-          config: {
-            endpoint: `${ejs.pluginEndpoint}/link`,
-            headers: {
-                "Authorization": `Bearer ${ejs.authToken}`
-              }
-          },
+          config: createStrapiLinkToolConfig(ejs),
         },
         image: {
             class: Image,
-            config: {
-                field: "files.image",
-                additionalRequestData: {
-                  data: JSON.stringify({})
-                },
-                additionalRequestHeaders: {
-                  "Authorization": `Bearer ${ejs.authToken}`
-                },
-                endpoints: {
-                  byUrl: `${ejs.pluginEndpoint}/image/byUrl`,
-                },
-                uploader: {
-                  async uploadByFile(file: string | Blob) {
-                    const formData = new FormData();
-                    formData.append("data", JSON.stringify({}));
-                    formData.append("files.image", file);
-          
-                    const { data } = await ejs.fetchClient.post(`${ejs.pluginEndpoint}/image/byFile`, formData);
-    
-                    return data
-                  },
-                }
-            }
+            config: createStrapiImageToolConfig(ejs),
         },
         raw: {
           class: Raw,
@@ -110,4 +86,4 @@ const createTools: CreateToolsFunction = (ejs) => {
 }
 
 
-export default createTools
+export default createTools;

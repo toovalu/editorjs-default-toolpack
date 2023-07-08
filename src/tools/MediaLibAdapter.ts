@@ -12,7 +12,7 @@ export type MediaLibAdapterToolData = {}
 
 // -----------------------------
 
-export default class MediaLibAdapterTool implements BlockTool {
+export class MediaLibAdapterTool implements BlockTool {
 
     private _api: API;
     private _config: MediaLibAdapterToolConfig;
