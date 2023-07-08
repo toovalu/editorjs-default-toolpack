@@ -12,6 +12,7 @@ import CheckList from '@editorjs/checklist'
 import Delimiter from '@editorjs/delimiter'
 import InlineCode from '@editorjs/inline-code'
 import MediaLibAdapterTool from './tools/MediaLibAdapter'
+import Image from '@editorjs/image';
 
 import type { CreateToolsFunction } from 'strapi-plugin-react-editorjs/types'
 
@@ -36,11 +37,40 @@ const createTools: CreateToolsFunction = (ejs) => {
           },
         },
         code: Code,
-        LinkTool: {
+        link: {
           class: LinkTool,
           config: {
             endpoint: `${ejs.pluginEndpoint}/link`,
+            headers: {
+                "Authorization": `Bearer ${ejs.authToken}`
+              }
           },
+        },
+        image: {
+            class: Image,
+            config: {
+                field: "files.image",
+                additionalRequestData: {
+                  data: JSON.stringify({})
+                },
+                additionalRequestHeaders: {
+                  "Authorization": `Bearer ${ejs.authToken}`
+                },
+                endpoints: {
+                  byUrl: `${ejs.pluginEndpoint}/image/byUrl`,
+                },
+                uploader: {
+                  async uploadByFile(file: string | Blob) {
+                    const formData = new FormData();
+                    formData.append("data", JSON.stringify({}));
+                    formData.append("files.image", file);
+          
+                    const { data } = await ejs.fetchClient.post(`${ejs.pluginEndpoint}/image/byFile`, formData);
+    
+                    return data
+                  },
+                }
+            }
         },
         raw: {
           class: Raw,

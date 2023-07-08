@@ -17,7 +17,15 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+
+    /* For development only - should be removed when made stable*/
+    "paths": {
+        "strapi-plugin-react-editorjs": ["./node_modules/@xenobytezero/strapi-plugin-react-editorjs"],
+        "strapi-plugin-react-editorjs/*": ["./node_modules/@xenobytezero/strapi-plugin-react-editorjs/*"]
+    }
+
   },
   "include": ["src", "types"]
 }

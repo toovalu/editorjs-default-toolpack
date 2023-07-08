@@ -11,3 +11,4 @@ declare module '@editorjs/marker';
 declare module '@editorjs/checklist';
 declare module '@editorjs/delimiter';
 declare module '@editorjs/inline-code';
+declare module '@editorjs/image';
