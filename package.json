@@ -1,12 +1,13 @@
 {
   "name": "@xenobytezero/editorjs-default-toolpack",
+  "repository": "https://github.com/xenobytezero/editorjs-default-toolpack",
+  "version": "1.0.0",
   "packageManager": "yarn@3.6.0",
   "scripts": {
     "develop": "vite build --watch",
     "build": "tsc && vite build"
   },
   "main": "dist/index.mjs",
-  "types": "dist/index.d.ts",
   "devDependencies": {
     "@editorjs/checklist": "1.5.0",
     "@editorjs/code": "2.8.0",
@@ -24,9 +25,15 @@
     "@editorjs/raw": "2.4.0",
     "@editorjs/table": "2.2.1",
     "@editorjs/warning": "1.3.0",
-    "@xenobytezero/strapi-plugin-react-editorjs": "workspace:*",
+    "@xenobytezero/strapi-plugin-react-editorjs": "0.8.1",
     "axios": "^1.4.0",
     "typescript": "^5.1.3",
     "vite": "^4.3.9"
+  },
+  "files": [
+    "./dist"
+  ],
+  "publishConfig": {
+      "registry": "https://npm.pkg.github.com"
   }
 }
