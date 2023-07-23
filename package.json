@@ -1,7 +1,7 @@
 {
   "name": "@xenobytezero/editorjs-default-toolpack",
   "repository": "https://github.com/xenobytezero/editorjs-default-toolpack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "packageManager": "yarn@3.6.0",
   "scripts": {
     "develop": "vite build --watch",
