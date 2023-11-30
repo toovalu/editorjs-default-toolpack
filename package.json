@@ -1,6 +1,6 @@
 {
-  "name": "@xenobytezero/editorjs-default-toolpack",
-  "repository": "https://github.com/xenobytezero/editorjs-default-toolpack",
+  "name": "@toovalu/editorjs-default-toolpack",
+  "repository": "https://github.com/toovalu/editorjs-default-toolpack",
   "version": "1.0.4",
   "packageManager": "yarn@3.6.0",
   "scripts": {
